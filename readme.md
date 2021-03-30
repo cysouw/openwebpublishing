@@ -1,11 +1,3 @@
----
-title: Scientific publishing on the open web
-author: Michael Cysouw
-affiliation: Philipps-Universität Marburg
-e-mail: cysouw@uni-marburg.de
-date: 2021
----
-
 # Open web publishing
 
 An ever growing body of scientific publications is available online, ideally open access. Most publications today are prepared electronically from the start, and more and more older publications are retro-digitized. And, by their very nature, scientific publications are an interconnected network of knowledge. Yet, science online does not exploit the hypertextuality of the web. It is exceedingly tedious to follow citations of other works, and references to pages or subsections have to be reached by manually scrolling through documents. By leveraging Open Web technologies it is straightforwardly feasible to prepare scientific publications in a truly interconnected way.
@@ -59,4 +51,10 @@ This publication was prepared in Markdown using [Pandoc](https:pandoc.org) for t
 
 To insert cross-references to other Open Web Publications it would be highly desirable for reference managers to insert the proper links. For example, in preparing the above mentioned publication I used Pandoc's [citeproc](https://pandoc.org/MANUAL.html#citation-rendering) to prepare the in-text references and bibliography. Ideally, when I would add a citation like [@cysouw2021: #2.7] in such a work, then the hash-based suffix should ideally be transformed to `STABLEID/fulltext.html#2.7`.
 
-
+---
+title: Scientific publishing on the open web
+author: Michael Cysouw
+affiliation: Philipps-Universität Marburg
+e-mail: cysouw@uni-marburg.de
+date: 2021
+---
