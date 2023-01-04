@@ -49,7 +49,7 @@ This publication was prepared in Markdown using [Pandoc](https:pandoc.org) for t
 
 - [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) for cross-reference to sections, figures and tables.
 - [`crossref-adapt`](https://github.com/cysouw/crossref-adapt) for changing the IDs of these cross-references to the format proposed above, so they can transparently be cited.
-- [`count-para`](https://github.com/cysouw/count-para) to add numbers to text paragraphs. Refer to a specific paragraph for example as (Cysouw 2021: #2.7). Adding the suffix to a stable link directly redirects the reader to the paragraph, e.g. (cysouw 2021: [#2.7](https://cysouw.github.io/diathesis/fulltext.html#2.7))!
+- [`count-para`](https://github.com/cysouw/count-para) to add numbers to text paragraphs. Refer to a specific paragraph for example as (Cysouw 2021: #2.7). Adding the suffix to a stable link directly redirects the reader to the paragraph, e.g. (cysouw 2021: [#2.7](https://cysouw.github.io/diathesis/#2.7)).
 - [`pandoc-ling`](https://github.com/cysouw/pandoc-ling) for the layout, numbering and cross-reference of linguistic examples, using the `ex` identifiers.
 - [`citeproc`](https://github.com/jgm/citeproc) for citation and bibliography.
 
