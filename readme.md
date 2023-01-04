@@ -40,6 +40,11 @@ As an example consider the manuscript being prepared for publication at [github.
 - footnotes: https://cysouw.github.io/diathesis/index.html#fn3
 - paragraphs: https://cysouw.github.io/diathesis/index.html#3.7
 
+Note that the usage of `index.html` has the extra benefit that it can be left out in the links, so the references are even stronger reduced, e.g.:
+
+- examples: https://cysouw.github.io/diathesis/#ex5.20
+- paragraphs: https://cysouw.github.io/diathesis/#3.7
+
 This publication was prepared in Markdown using [Pandoc](https:pandoc.org) for the conversion to HTML, though any other toolchain could just as well be used. To extend the functionality of Pandoc, various filters (Pandoc parlance for extensions) were used:
 
 - [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) for cross-reference to sections, figures and tables.
