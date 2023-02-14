@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Michael Cysouw" />
+  <title>Academic publishing on the open web</title>
+  <style>
+html {
+line-height: 1.5;
+font-family: Georgia, serif;
+font-size: 20px;
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 1em;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+font-size: 85%;
+margin: 0;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+background-color: #1a1a1a;
+border: none;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+   
+  <!-- CSS added by filter 'toc-css.lua' for TOC hovering to the side -->
+  <style>
+body {
+padding-left: 1cm;
+padding-right: 1cm;
+transition: 0.5s;
+}
+nav {
+width: 1em;
+margin-left: -1cm;
+font-size: smaller;
+color: grey;
+transition: 0.5s;
+float: left;
+position: fixed;
+top: 0;
+bottom: 0;
+white-space: nowrap; overflow: hidden;
+overflow-y: scroll;
+transition: 0.5s;
+}
+nav::-webkit-scrollbar {
+display: none;
+}
+nav a, nav a:visited {
+color: grey;
+}
+nav h2:before {
+content: "≡ ";
+font-size: 150%;
+}
+nav h2:after {
+content: " ◂";
+}
+nav li {
+margin-left: 1em;
+white-space: nowrap; overflow: hidden;
+text-overflow: ellipsis;
+}
+nav li > a:not(:only-child):before {
+content: "▸ ";
+}
+nav li > a:only-child {
+margin-left: 0.75em;
+}
+nav li li {
+margin-left: 1em;
+}
+nav li li li {
+margin-left: 0.5em;
+font-size: smaller;
+}
+nav ul li ul {
+visibility: hidden;
+display: none;
+margin-top: 0.2em;
+margin-bottom: 0.2em;
+transition: 0.5s;
+}
+.toc-section-number {
+padding-right: 0.2em;
+}
+.paddingleft {
+padding-left: 9cm;
+transition: 0.5s;
+}
+.navside {
+width: 7cm;
+margin-left: -8.5cm;
+padding-right: 1cm;
+transition: 0.5s;
+}
+.navside h2:after {
+content: " ▸";
+}
+.navshown {
+width: 50%;
+transition: 0.5s;
+background-color: rgba(255, 255, 255, 0.95);
+}
+.subShow > ul {
+visibility: visible;
+display: block;
+transition: 0.5s;
+margin-left: -1em;
+}
+.subShow > a:not(:only-child):before {
+content: "▾ ";
+}
+</style>
+   
+  <!-- CSS added by lua-filter 'count-para' -->
+  <style>
+.paragraph-number { float: left;
+margin-left: -6em;
+width: 4.5em;
+text-align: right;
+color: grey;
+font-size: x-small;
+padding-top: 5px;
+}
+</style>
+      
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Academic publishing on the open web</h1>
+<p class="author">Michael Cysouw</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Contents</h2>
+<ul>
+<li><a href="#the-academic-web" id="toc-the-academic-web"><span class="toc-section-number">1</span> The academic web</a></li>
+<li><a href="#best-practices-for-academic-web-publication" id="toc-best-practices-for-academic-web-publication"><span class="toc-section-number">2</span> Best practices for academic
+web-publication</a></li>
+<li><a href="#example" id="toc-example"><span class="toc-section-number">3</span> Example</a></li>
+<li><a href="#cross-referencing" id="toc-cross-referencing"><span class="toc-section-number">4</span> Cross referencing</a></li>
+</ul>
+</nav>
+<h1 data-number="1" id="the-academic-web"><span class="header-section-number">1</span> The academic web</h1>
+<p><span id="1" class="paragraph-number">[1]</span> An ever growing body
+of academic publications is available online, ideally open access. Most
+publications today are prepared electronically from the start, and more
+and more older publications are retro-digitized. And, by their very
+nature, academic publications are an interconnected network of
+knowledge. Yet, academia-online does not fully exploit the
+hypertextuality of the web. It is exceedingly tedious to follow
+citations to other works, and references to pages or subsections have to
+be reached by manually scrolling through page-based (PDF) documents. In
+contrast, by leveraging Open Web technologies it is straightforwardly
+feasible to prepare academic publications in a truly interconnected
+way.</p>
+<p><span id="2" class="paragraph-number">[2]</span> The <a href="https://www.w3.org/wiki/Open_Web_Platform">Open Web Platform</a>
+is a concept advanced by the World Wide Web Consortium (W3C). It is the
+collection of open and royalty-free technologies which enables the Web.
+Basically, this means HTML content with CSS/Javascript layout and
+various additional technologies like MathML and SVG. With (ever ongoing)
+advances in HTML/CSS and browser technology, the quality and
+possibilities of layout are approaching the sophistication of Latex,
+while additionally being <a href="https://alistapart.com/article/responsive-web-design/">adaptive/responsive</a>.
+Precise cross-referencing is possible through hyperlinking with
+hash-formatted <a href="https://en.wikipedia.org/wiki/URI_fragment">URI
+Fragments</a>. Annotations can be added by using the <a href="https://www.w3.org/annotation/">Web Annotation Standard</a> of the
+W3C, for example implemented by <a href="https://web.hypothes.is">Hypothesis</a>. Also note that HTML/CSS
+is much better suited to accessibility. In contrast, PDF is often
+unusable for screen readers.</p>
+<p><span id="3" class="paragraph-number">[3]</span> This document
+proposes some best practices for the preparation of scientific
+publications on the Open Web with the explicit goal to add to a dialogue
+about the many pracitical details that this involves. As a practical
+example, the preparation of a linguistic monograph is detailed using the
+document preparation framework <a href="https://pandoc.org">Pandoc</a>.</p>
+<p><span id="4" class="paragraph-number">[4]</span> Note that this plea
+for Open Web Publishing is largely independent of the question of Open
+Access Publishing. Ideally, scientific publications are open access, so
+that any links to them easily resolve without paywalls. However, even
+with restricted access to the content the principles of Open Web
+Publishing still hold.</p>
+<h1 data-number="2" id="best-practices-for-academic-web-publication"><span class="header-section-number">2</span> Best practices for academic
+web-publication</h1>
+<p><span id="5" class="paragraph-number">[5]</span> The current de-facto
+standard of electronic publication is to provide scientific works as
+page-based PDF. This format is a one-to-one reflection of the
+traditional book form-factor. Moving to purely web-based publications
+implies various changes to this model. I propose the following best
+practices:</p>
+<ul>
+<li><strong>Prepare publications in HTML+CSS</strong> and use the
+capacities of modern web-browsers to render the output on the fly. This
+is a major change to the model of fixed renders, be it in the form of
+traditional physical typesetting or modern electronic typesetting by
+word processors or typesetting software like Latex. Many of the
+subsequent proposals result from adapting publications to this new
+typesetting paradigm.</li>
+<li><strong>Combine all parts of a publication into one single HTML
+file</strong>, including appendices and supplementary texts. In
+contrast, data tables should be separated in a format suitable for
+automatic processing of raw data. However, the main text should be a
+single file that includes everything necessary to display the work. Even
+rendering large book-sized publications on the fly is technically
+unproblematic for modern computers with modern browsers. By using single
+files, publications always remain coherent and can, for example, be
+easily searched and scrolled through. Ideally, also include all
+CSS/Javascript inline into the single HTML file. In this way, a
+publication can easily be shared and archived off-line without losing
+any formatting.</li>
+<li><strong>Provide a transparent stable location for to the actual full
+text</strong>. Stable identifiers like DOIs are fortunately spreading
+rapidly, but they mostly redirect the user to a landing page with all
+kind of (more or less useful) information regarding the publication. To
+allow for direct linking to the content there needs to be a common
+location for the actual full text. The obvious location should be
+<code>STABLEID/index.html</code> for the actual full text HTML file.
+However, depending on publisher’s preferences this location might be
+used as a landing page, so an alternative location for the actual
+fulltext might be needed, e.g. <code>STABLEID/fulltext.html</code>.</li>
+<li><strong>Any updated or changed version of a publication should get a
+new stable identifier</strong>, so links always resolve to the
+originally linked-to source. Updating cross-referencing to newer version
+should not be assumed to be just work automatically, but might need
+manual inspection. Note that the new identifier means a new stable ID,
+which still assumes the added <code>index.html</code> for linking to the
+actual content.</li>
+<li><strong>Add hard-coded paragraph numbering into the text</strong> as
+an alternative to page numbering. In an adaptive HTML-based publication
+the concept of a page loses its meaning. For backward compatibility with
+retro-digitized works it is of course possible to add markers to
+indicate the original page breaks, but moving forward this model of
+chunking content is not practical as the page as a unit simply will
+become superfluous. Instead, the paragraph is an ideal chunk of content
+for cross-reference. To allow for stable identification of paragraphs,
+the paragraph numbering has to be hard-coded into the full text on
+publication.</li>
+<li><strong>Add transparent IDs to all crucial HTML entities</strong>
+like headings, paragraphs, tables, example, etc. to allow for detailed
+cross-referencing using hash-based fragments. For example, by adding an
+ID like <code>id=sec4.1</code> to a heading in the HTML is becomes
+possible to use a link like <code>STABLEID/index.html#sec4.1</code> to
+directly link to this section. A user following such a link will be
+directly redirected to that specific heading. The format of the IDs can
+be freely chosen, as long as the IDs are clearly communicated to
+readers. However, for consistency I propose the following identifiers
+for scientific publications:
+<ul>
+<li><strong>sec</strong> for any numbered header, adding the actual
+number in the stable published version, e.g. <code>sec4.1</code></li>
+<li><strong>tbl</strong> for numbered tables</li>
+<li><strong>fig</strong> for numbered figures</li>
+<li><strong>ex</strong> for numbered examples</li>
+<li><strong>eq</strong> for numbered equations</li>
+<li><strong>fn</strong> for numbered footnotes</li>
+<li><strong>p</strong> for page numbers in retro-digitized
+publications</li>
+<li>Finally, for paragraphs the ID should simply be a number, so
+reference to paragraph number 34 in chapter 5 simply becomes
+<code>#5.34</code>.</li>
+</ul></li>
+</ul>
+<h1 data-number="3" id="example"><span class="header-section-number">3</span> Example</h1>
+<p><span id="6" class="paragraph-number">[6]</span> As an example
+consider the manuscript being prepared for publication at <a href="https://github.com/cysouw/diathesis">github.com/cysouw/diathesis</a>.
+This manuscript is a testbed for the various practices proposed above.
+Because it is not yet published in a final form, the stable identifier
+is of course not yet stable. However, for testing the following location
+can be used for the full text of the publication: <a href="https://cysouw.github.io/diathesis/index.html">cysouw.github.io/diathesis/</a>.
+Try adding any fragment to this link to cross-reference a specific part,
+e.g.</p>
+<ul>
+<li>headings: <a href="https://cysouw.github.io/diathesis/index.html#sec4.2" class="uri">https://cysouw.github.io/diathesis/index.html#sec4.2</a></li>
+<li>tables: <a href="https://cysouw.github.io/diathesis/index.html#tbl2.1" class="uri">https://cysouw.github.io/diathesis/index.html#tbl2.1</a></li>
+<li>figures: <a href="https://cysouw.github.io/diathesis/index.html#fig1.2" class="uri">https://cysouw.github.io/diathesis/index.html#fig1.2</a></li>
+<li>examples: <a href="https://cysouw.github.io/diathesis/index.html#ex5.20" class="uri">https://cysouw.github.io/diathesis/index.html#ex5.20</a></li>
+<li>footnotes: <a href="https://cysouw.github.io/diathesis/index.html#fn3" class="uri">https://cysouw.github.io/diathesis/index.html#fn3</a></li>
+<li>paragraphs: <a href="https://cysouw.github.io/diathesis/index.html#3.7" class="uri">https://cysouw.github.io/diathesis/index.html#3.7</a></li>
+</ul>
+<p><span id="7" class="paragraph-number">[7]</span> Note that the usage
+of <code>index.html</code> has the extra benefit that it can be left out
+in the links, so the references are even stronger reduced, e.g.:</p>
+<ul>
+<li>examples: <a href="https://cysouw.github.io/diathesis/#ex5.20" class="uri">https://cysouw.github.io/diathesis/#ex5.20</a></li>
+<li>paragraphs: <a href="https://cysouw.github.io/diathesis/#3.7" class="uri">https://cysouw.github.io/diathesis/#3.7</a></li>
+</ul>
+<p><span id="8" class="paragraph-number">[8]</span> This publication was
+prepared in Markdown using <a href="https:pandoc.org">Pandoc</a> for the
+conversion to HTML, though any other toolchain could just as well be
+used. To extend the functionality of Pandoc, various filters (Pandoc
+parlance for extensions) were used:</p>
+<ul>
+<li><a href="https://github.com/lierdakil/pandoc-crossref"><code>pandoc-crossref</code></a>
+for cross-reference to sections, figures and tables.</li>
+<li><a href="https://github.com/cysouw/crossref-adapt"><code>crossref-adapt</code></a>
+for changing the IDs of these cross-references to the format proposed
+above, so they can transparently be cited.</li>
+<li><a href="https://github.com/cysouw/count-para"><code>count-para</code></a>
+to add numbers to text paragraphs. Refer to a specific paragraph for
+example as (Cysouw 2021: #2.7). Adding the suffix to a stable link
+directly redirects the reader to the paragraph, e.g. (cysouw 2021: <a href="https://cysouw.github.io/diathesis/#2.7">#2.7</a>).</li>
+<li><a href="https://github.com/cysouw/pandoc-ling"><code>pandoc-ling</code></a>
+for the layout, numbering and cross-reference of linguistic examples,
+using the <code>ex</code> identifiers.</li>
+<li><a href="https://github.com/jgm/citeproc"><code>citeproc</code></a>
+for citation and bibliography.</li>
+</ul>
+<h1 data-number="4" id="cross-referencing"><span class="header-section-number">4</span> Cross referencing</h1>
+<p><span id="9" class="paragraph-number">[9]</span> To insert
+cross-references to other Open Web Publications it would be highly
+desirable for reference managers to insert the proper links. For
+example, in preparing the above mentioned publication I used Pandoc’s <a href="https://pandoc.org/MANUAL.html#citation-rendering">citeproc</a> to
+prepare the in-text references and bibliography. Ideally, when I would
+add a citation like <span class="citation" data-cites="cysouw2021">[@cysouw2021: #2.7]</span> in such a work, then
+the hash-based suffix should ideally be transformed to
+<code>STABLEID/index.html#2.7</code>.</p>
+
+<!-- Javascript added by toc-css.lua to make TOC expandable on click -->
+<script>
+
+  const b = document.querySelector("body");
+  const n = document.querySelector("nav");
+  const buttonsize = 20;
+
+  // click on "toc-title" to show TOC to the side
+  document.querySelector("#toc-title").addEventListener("click", function(e) {
+    if (e.clientX < e.currentTarget.getBoundingClientRect().left + buttonsize) {
+      n.classList.toggle("navshown");
+    } else {
+      b.classList.toggle("paddingleft");
+      n.classList.toggle("navside");
+      n.classList.remove("navshown");
+    };
+  });
+
+  // by default show TOC in large window
+  window.onload = function() {
+    if (window.innerWidth > 1000) {
+      b.classList.add("paddingleft");
+      n.classList.add("navside");
+    };
+  };
+
+  // show/hide TOC on resize
+  window.onresize = function () {
+    if (window.innerWidth > 1000) {
+      b.classList.add("paddingleft");
+      n.classList.add("navside");
+    } else {
+      b.classList.remove("paddingleft");
+      n.classList.remove("navside");
+    };
+  };
+
+  // show/hide subsections
+  const allLis = document.querySelectorAll("nav li");
+
+  for (const li of allLis) {
+    li.addEventListener('click', function (e) {
+      if (e.clientX < e.currentTarget.getBoundingClientRect().left + buttonsize) {
+        li.classList.toggle('subShow');
+        e.preventDefault();
+      };
+      if (e.clientX > e.currentTarget.getBoundingClientRect().left + 3*buttonsize) {
+        n.classList.remove("navshown");
+      };
+    });
+  };
+
+  // show full nav on tab, hide full nav on escape
+  document.addEventListener("keydown", function (e) {
+    if (e.which === 27) {
+      n.classList.remove("navshown");
+      e.preventDefault();
+    };
+    if (e.which === 9) {
+      n.classList.add("navshown");
+      e.preventDefault();
+    };
+  });
+
+  // hide full nav when clicked outside
+  document.addEventListener("click", function(e) {
+    if (n.classList.contains("navshown")) {
+      if (!n.contains(e.target)) {
+        n.classList.remove("navshown");
+      };
+    };
+  });
+
+</script>
+</body>
+</html>

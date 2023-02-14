@@ -1,0 +1,20 @@
+# pandoc 'defaults'
+
+from: markdown
+to: html
+output-file: docs/index.html
+
+input-files:
+- readme.md
+
+filters:
+- filters/toc-css.lua
+- filters/count-para.lua
+
+metadata-files:
+- metadata.yaml
+
+number-sections: true
+table-of-contents: true
+standalone: true
+self-contained: true
